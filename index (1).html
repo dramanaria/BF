@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRAMAN® Foundation — Create Together</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0a4a;
+    --navy-light: #12127a;
+    --gold: #c5a35a;
+    --gold-light: #d4b877;
+    --white: #ffffff;
+    --off-white: #f9f8f6;
+    --light-gray: #f2f1ef;
+    --mid-gray: #e8e6e1;
+    --text: #1a1a2e;
+    --text-light: #5a5a6e;
+    --text-muted: #9a9aaa;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 48px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--mid-gray);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo img {
+    height: 36px;
+    width: auto;
+  }
+
+  .nav-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.05em;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    border: none;
+    background: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--navy);
+    transition: all 0.3s ease;
+  }
+
+  /* ── MENU OVERLAY ── */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--navy);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  .menu-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .menu-close {
+    position: absolute;
+    top: 32px; right: 48px;
+    font-size: 28px;
+    color: var(--white);
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+  }
+
+  .menu-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+  }
+
+  .menu-links a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+    display: block;
+    padding: 8px 0;
+  }
+
+  .menu-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-logo {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  .hero-bg-logo img {
+    width: min(80vw, 80vh);
+    height: auto;
+    filter: brightness(10);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 24px;
+    animation: fadeUp 1.2s ease forwards;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .hero-title sup {
+    font-size: 0.35em;
+    vertical-align: super;
+    letter-spacing: 0;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 300;
+    color: var(--white);
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+  }
+
+  .hero-slogan {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 30px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.03em;
+    margin-bottom: 48px;
+  }
+
+  .hero-meta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.3);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 120px 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .section-text {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-light);
+    max-width: 680px;
+  }
+
+  .section-text p { margin-bottom: 20px; }
+  .section-text p:last-child { margin-bottom: 0; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--mid-gray);
+    margin: 0 48px;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .recognition-list {
+    margin-top: 48px;
+    border-top: 1px solid var(--mid-gray);
+    padding-top: 32px;
+  }
+
+  .recognition-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .recognition-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  .recognition-item::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--mid-gray);
+    border: 1px solid var(--mid-gray);
+  }
+
+  .stat-box {
+    background: var(--white);
+    padding: 32px 28px;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ── MISSION ── */
+  #mission { background: var(--navy); }
+
+  #mission .section-eyebrow { color: var(--gold); }
+  #mission .section-title { color: var(--white); }
+
+  .mission-statement {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3vw, 34px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.5;
+    border-left: 2px solid var(--gold);
+    padding-left: 32px;
+    margin-bottom: 64px;
+    max-width: 780px;
+  }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .mission-item {
+    background: rgba(255,255,255,0.04);
+    padding: 36px 28px;
+    border-top: 2px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .mission-item:hover { border-top-color: var(--gold); }
+
+  .mission-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .mission-item-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .mission-item-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ── DIRECTIONS ── */
+  #directions { background: var(--off-white); }
+
+  .directions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .direction-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0;
+    background: var(--white);
+    border: 1px solid var(--mid-gray);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+
+  .direction-item:hover {
+    box-shadow: 0 4px 24px rgba(10,10,74,0.08);
+  }
+
+  .direction-num {
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.3);
+    padding: 32px 0;
+  }
+
+  .direction-content {
+    padding: 32px 36px;
+  }
+
+  .direction-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+
+  .direction-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-light);
+  }
+
+  /* ── RESULTS ── */
+  #results { background: var(--white); }
+
+  .results-date {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 48px;
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+  }
+
+  .results-block-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    border-bottom: 1px solid var(--mid-gray);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+
+  .results-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  .results-item::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── PHILOSOPHY ── */
+  #philosophy { background: var(--light-gray); }
+
+  .philosophy-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .philosophy-block {
+    margin-bottom: 48px;
+  }
+
+  .philosophy-block-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+
+  .philosophy-block-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-light);
+  }
+
+  .philosophy-credo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3vw, 34px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.4;
+    border-left: 2px solid var(--gold);
+    padding-left: 32px;
+    position: sticky;
+    top: 120px;
+  }
+
+  /* ── PARTNERSHIP ── */
+  #partnership { background: var(--navy); }
+  #partnership .section-eyebrow { color: var(--gold); }
+  #partnership .section-title { color: var(--white); }
+
+  .partnership-intro {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.6);
+    max-width: 640px;
+    margin-bottom: 64px;
+  }
+
+  .partnership-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.06);
+    margin-bottom: 64px;
+  }
+
+  .partner-card {
+    background: rgba(255,255,255,0.03);
+    padding: 36px 28px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s;
+  }
+
+  .partner-card:hover { background: rgba(255,255,255,0.06); }
+
+  .partner-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .partner-card-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .partnership-cta {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cta-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white);
+  }
+
+  .cta-link {
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .cta-link:hover { opacity: 0.7; }
+
+  /* ── CONTACTS ── */
+  #contacts { background: var(--white); }
+
+  .contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+
+  .contact-group {
+    margin-bottom: 40px;
+  }
+
+  .contact-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .contact-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--navy);
+    text-decoration: none;
+    display: block;
+    transition: color 0.2s;
+  }
+
+  .contact-value:hover { color: var(--gold); }
+
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .social-link {
+    font-size: 15px;
+    color: var(--text-light);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: color 0.2s;
+  }
+
+  .social-link:hover { color: var(--navy); }
+
+  .social-link::before {
+    content: '→';
+    color: var(--gold);
+    font-size: 14px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .container { padding: 0 24px; }
+    section { padding: 80px 0; }
+    .about-grid, .philosophy-inner, .contacts-grid { grid-template-columns: 1fr; gap: 48px; }
+    .mission-grid { grid-template-columns: 1fr; }
+    .results-grid { grid-template-columns: 1fr; }
+    .partnership-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .partnership-cta { flex-direction: column; gap: 24px; align-items: flex-start; }
+    footer { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .divider { margin: 0 24px; }
+    .menu-close { right: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <img src="https://i.ibb.co/dJzxjfdh/DRAMAN-3-copy.png" alt="DRAMAN" style="filter: invert(1) sepia(1) saturate(3) hue-rotate(200deg) brightness(0.3);">
+    <span class="nav-logo-text">DRAMAN<sup>®</sup> Foundation</span>
+  </a>
+  <button class="hamburger" onclick="openMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MENU OVERLAY -->
+<div class="menu-overlay" id="menuOverlay">
+  <button class="menu-close" onclick="closeMenu()">✕ close</button>
+  <ul class="menu-links">
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#mission" onclick="closeMenu()">Mission</a></li>
+    <li><a href="#directions" onclick="closeMenu()">Directions</a></li>
+    <li><a href="#results" onclick="closeMenu()">Results</a></li>
+    <li><a href="#philosophy" onclick="closeMenu()">Philosophy</a></li>
+    <li><a href="#partnership" onclick="closeMenu()">Partnership</a></li>
+    <li><a href="#contacts" onclick="closeMenu()">Contacts</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-logo">
+    <img src="https://i.ibb.co/dJzxjfdh/DRAMAN-3-copy.png" alt="">
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Charitable Foundation · Kyiv, Ukraine</div>
+    <h1 class="hero-title">DRAMAN<sup>®</sup><br>Foundation</h1>
+    <div class="hero-slogan">Create together.</div>
+    <div class="hero-meta">Since 2022</div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-eyebrow reveal">About</div>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title reveal reveal-delay-1">A foundation<br>that <em>expands</em> boundaries</h2>
+        <div class="section-text reveal reveal-delay-2">
+          <p>DRAMAN Foundation is an officially registered nonprofit organisation based in Kyiv, Ukraine.</p>
+          <p>The Foundation grew from the DRAMAN ecosystem, which began its work in April 2022. A group of Ukrainian theatre practitioners recognised an urgent need for independent support of new cultural projects and creative individuals — and for enriching the cultural space with national content.</p>
+          <p>Since 2023, we have been implementing programmes of psychosocial rehabilitation and integration for vulnerable populations: IDPs, families of combat veterans, older adults, volunteers, military doctors, and youth.</p>
+          <p>DRAMAN believes that theatre is not merely entertainment — it is a traditional technology of recovery and social integration, with thousands of years of proven application even in the most challenging circumstances.</p>
+          <p>Registered as a legal entity in 2025. DRAMAN® is an officially registered trademark.</p>
+        </div>
+        <div class="recognition-list reveal reveal-delay-3">
+          <div class="recognition-label">Recognition</div>
+          <div class="recognition-item">Letter of Appreciation — Main Military Clinical Hospital, Kyiv</div>
+          <div class="recognition-item">Letter of Appreciation — Department of Public Communications, KCSA</div>
+          <div class="recognition-item">Partner — IDP Council at the Kyiv City Military Administration</div>
+          <div class="recognition-item">Laureate — TOP 100 KCSA Cases Award "Civil-Government Cooperation" 2025</div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <img src="https://i.ibb.co/tprnrpCm/Metamorphoses-training3-Charitable-Fund-DRAMAN.jpg" alt="DRAMAN Foundation — Metamorphoses training" style="width:100%;height:280px;object-fit:cover;display:block;margin-bottom:2px;">
+        <div class="about-stats">
+          <div class="stat-box">
+            <div class="stat-num">800+</div>
+            <div class="stat-label">Community members</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">30+</div>
+            <div class="stat-label">Partner theatres</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">6 000+</div>
+            <div class="stat-label">Free invitations</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">2022</div>
+            <div class="stat-label">Founded</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="container">
+    <div class="section-eyebrow reveal">Mission</div>
+    <h2 class="section-title reveal reveal-delay-1">Why we exist</h2>
+    <div class="mission-statement reveal reveal-delay-2">
+      We expand boundaries — so that culture and creativity become accessible to everyone who needs them.
+    </div>
+    <div class="mission-grid">
+      <div class="mission-item reveal">
+        <div class="mission-num">01</div>
+        <div class="mission-item-title">Equal Access to Culture</div>
+        <div class="mission-item-text">We remove financial, social and physical barriers between people and the arts. Theatre is not a privilege — it is a right.</div>
+      </div>
+      <div class="mission-item reveal reveal-delay-1">
+        <div class="mission-num">02</div>
+        <div class="mission-item-title">Psychosocial Rehabilitation</div>
+        <div class="mission-item-text">Art as a therapeutic space. We help people recover through creativity — especially those affected by the consequences of war.</div>
+      </div>
+      <div class="mission-item reveal reveal-delay-2">
+        <div class="mission-num">03</div>
+        <div class="mission-item-title">Community Integration</div>
+        <div class="mission-item-text">Theatre unites people of different backgrounds. Shared creativity builds trust and restores social bonds.</div>
+      </div>
+      <div class="mission-item reveal reveal-delay-3">
+        <div class="mission-num">04</div>
+        <div class="mission-item-title">Creative Realisation</div>
+        <div class="mission-item-text">We create spaces where self-expression becomes possible — regardless of status, means or circumstance.</div>
+      </div>
+      <div class="mission-item reveal reveal-delay-4">
+        <div class="mission-num">05</div>
+        <div class="mission-item-title">Skills for the Future</div>
+        <div class="mission-item-text">Creative participation develops the human qualities that no technology can replace — the foundation for life in a changing world.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="background: rgba(255,255,255,0.08); margin: 0;"></div>
+
+<!-- DIRECTIONS -->
+<section id="directions">
+  <div class="container">
+    <div class="section-eyebrow reveal">Directions</div>
+    <h2 class="section-title reveal reveal-delay-1">What we <em>do</em></h2>
+    <div class="directions-list">
+      <div class="direction-item reveal">
+        <div class="direction-num">01</div>
+        <div class="direction-content">
+          <div class="direction-title">Equal Access to Culture and Theatre</div>
+          <div class="direction-text">In 2023, the "Right to Dream" project was launched, providing over 2,000 free tickets to vulnerable populations. In 2025, it was institutionalised as DRAMAN Art Club — an online community using digital technologies to expand reach and engage audiences efficiently.</div>
+        </div>
+      </div>
+      <div class="direction-item reveal reveal-delay-1">
+        <div class="direction-num">02</div>
+        <div class="direction-content">
+          <div class="direction-title">Supporting Theatres in Building New Audiences</div>
+          <div class="direction-text">Ukrainian theatres lost significant audiences due to emigration caused by the war. DRAMAN helps partner theatres attract new audiences — including IDPs and groups previously outside the theatre-going community.</div>
+        </div>
+      </div>
+      <div class="direction-item reveal reveal-delay-2">
+        <div class="direction-num">03</div>
+        <div class="direction-content">
+          <div class="direction-title">Theatre-Based Training Programmes</div>
+          <div class="direction-text">Short-term programmes for rapid stress relief, and long-term systemic programmes for recovery, ongoing support, and inclusion in a community of like-minded people.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:20px;">
+            <img src="https://i.ibb.co/qFdst3xd/Metamorphoses-training2-Charitable-Fund-DRAMAN.jpg" alt="Metamorphoses training" style="width:100%;height:160px;object-fit:cover;display:block;">
+            <img src="https://i.ibb.co/1t3PDkMS/Metamorphoses-training1-Charitable-Fund-DRAMAN.jpg" alt="Metamorphoses training" style="width:100%;height:160px;object-fit:cover;display:block;">
+          </div>
+        </div>
+      </div>
+      <div class="direction-item reveal reveal-delay-3">
+        <div class="direction-num">04</div>
+        <div class="direction-content">
+          <div class="direction-title">Corporate Programmes for Human Capital</div>
+          <div class="direction-text">Theatre as a wellbeing tool: addressing burnout and stress, building corporate culture, and developing soft skills — within the framework of CSR and social initiatives.</div>
+        </div>
+      </div>
+      <div class="direction-item reveal reveal-delay-4">
+        <div class="direction-num">05</div>
+        <div class="direction-content">
+          <div class="direction-title">Inclusive Theatre Studio</div>
+          <div class="direction-text">For those who wish to develop further as performers. Productions are staged, improvisation formats practised, and a circle of community formed.</div>
+        </div>
+      </div>
+      <div class="direction-item reveal reveal-delay-5">
+        <div class="direction-num">06</div>
+        <div class="direction-content">
+          <div class="direction-title">Workshops and Festivals</div>
+          <div class="direction-text">Exchange of experience and dissemination of knowledge about theatrical technologies in commercial organisations, government institutions and NGOs.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="container">
+    <div class="section-eyebrow reveal">Results</div>
+    <h2 class="section-title reveal reveal-delay-1">Our <em>impact</em></h2>
+    <div class="results-date reveal reveal-delay-2">As of April 2026</div>
+    <div class="results-grid">
+      <div class="reveal reveal-delay-1">
+        <div class="results-block-title">Access to Culture</div>
+        <div class="results-item">6,000+ free invitations to theatre performances since 2023</div>
+        <div class="results-item">2,000 tickets via the "Right to Dream" project (2023–2025)</div>
+        <div class="results-item">4,000 invitations in the first year of DRAMAN Art Club (2025)</div>
+        <div class="results-item">800 Art Club members — IDPs, veterans' families, pensioners, volunteers</div>
+        <div class="results-item">30+ partner theatres and theatre projects</div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="results-block-title">Training Programmes</div>
+        <div class="results-item">11 groups completed the "Metamorphoses" programme — ~400 participants</div>
+        <div class="results-item">11 sessions of the "Let Off Steam" anti-stress training — ~250 participants</div>
+        <div class="results-item">Own methodology developed: from anti-stress introduction to ongoing support</div>
+      </div>
+      <div class="reveal reveal-delay-3">
+        <div class="results-block-title">Theatre Activity</div>
+        <div class="results-item">12 original productions staged</div>
+        <div class="results-item">30+ participants in the inclusive theatre studio</div>
+        <div class="results-item">Licence for a charitable production of "Misery" by Stephen King — obtained from CAA and the William Goldman Estate</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-top:20px;">
+          <img src="https://i.ibb.co/jPLYxS4v/Savanna-performance-Charitable-Fund-DRAMAN.jpg" alt="Savanna performance" style="width:100%;height:120px;object-fit:cover;display:block;">
+          <img src="https://i.ibb.co/7xqc9ZWp/Rozplitannya-performance2-Charitable-Fund-DRAMAN.png" alt="Rozplitannya performance" style="width:100%;height:120px;object-fit:cover;display:block;">
+          <img src="https://i.ibb.co/3y080dhH/Rozplitannya-performance-Charitable-Fund-DRAMAN.jpg" alt="Rozplitannya performance" style="width:100%;height:120px;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="reveal reveal-delay-4">
+        <div class="results-block-title">Events & Partnerships</div>
+        <div class="results-item">"Theatre and Business" workshop — 40 participants, under the auspices of the American House in Kyiv (April 2026)</div>
+        <div class="results-item">Laureate — TOP 100 KCSA Cases Award 2025</div>
+        <div class="results-item">Partner of the IDP Council at the Kyiv City Military Administration</div>
+        <div class="results-item">Letters of Appreciation from the Main Military Clinical Hospital and KCSA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="container">
+    <div class="section-eyebrow reveal">Philosophy</div>
+    <h2 class="section-title reveal reveal-delay-1">What we <em>believe</em></h2>
+    <div class="philosophy-inner">
+      <div>
+        <div class="philosophy-block reveal reveal-delay-1">
+          <div class="philosophy-block-title">DRAMAN — A Person of Creativity</div>
+          <div class="philosophy-block-text">DRAMAN is a combination of two words: <em>drama</em> — creative action, and <em>man</em> — a person. DRAMAN is a person for whom creativity is one of the fundamental meanings of existence — a motivation for active action and changing the world. Not as a privilege. As a natural need of every human being.</div>
+        </div>
+        <div class="philosophy-block reveal reveal-delay-2">
+          <div class="philosophy-block-title">Creativity Is Born Between People</div>
+          <div class="philosophy-block-text">Creativity is not the talent of a chosen few, nor an individual skill. It is a systemic phenomenon that arises in the space of collective interaction. It is born between people — and transforms everyone who takes part. We regard it as one of the fundamental meanings of human existence as a whole.</div>
+        </div>
+        <div class="philosophy-block reveal reveal-delay-3">
+          <div class="philosophy-block-title">Theatre — The Clearest Expression</div>
+          <div class="philosophy-block-text">Of all forms of collective creativity, theatre is the most complete and the most ancient. It offers the unique opportunity to explore oneself, discover one's purpose — and realise it first in the safe space of the stage, then carry that experience into real life. That is why theatre is our primary instrument.</div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="philosophy-credo">
+          "We believe: every person is capable of creating.<br>And of changing the world."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERSHIP -->
+<section id="partnership">
+  <div class="container">
+    <div class="section-eyebrow reveal">Partnership</div>
+    <h2 class="section-title reveal reveal-delay-1">Let's build<br><em>together</em></h2>
+    <p class="partnership-intro reveal reveal-delay-2">DRAMAN is open to partnership with organisations and individuals who share our mission — to expand the boundaries of access to culture and creative realisation.</p>
+    <div class="partnership-grid">
+      <div class="partner-card reveal">
+        <div class="partner-card-title">Government Institutions</div>
+        <div class="partner-card-text">Institutions working in psychosocial rehabilitation, social policy and community development. Together we can reach more people in need and create systemic impact.</div>
+      </div>
+      <div class="partner-card reveal reveal-delay-1">
+        <div class="partner-card-title">Commercial Organisations</div>
+        <div class="partner-card-text">Companies that care about their people and seek new approaches to human capital — within the framework of CSR and social programmes.</div>
+      </div>
+      <div class="partner-card reveal reveal-delay-2">
+        <div class="partner-card-title">NGOs</div>
+        <div class="partner-card-text">Organisations seeking new tools for non-material support of their participants and beneficiaries. Open to joint projects and knowledge exchange.</div>
+      </div>
+      <div class="partner-card reveal reveal-delay-3">
+        <div class="partner-card-title">Donors</div>
+        <div class="partner-card-text">Foundations and organisations supporting cultural and social projects. DRAMAN implements programmes with demonstrated impact and ensures full transparency.</div>
+      </div>
+      <div class="partner-card reveal reveal-delay-4">
+        <div class="partner-card-title">Patrons</div>
+        <div class="partner-card-text">Individuals who voluntarily support cultural and social projects as a personal contribution to the development of society. If you share our values — your participation matters.</div>
+      </div>
+    </div>
+    <div class="partnership-cta reveal">
+      <div class="cta-text">Ready to talk?<br>Write to us.</div>
+      <a href="#contacts" class="cta-link">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTS -->
+<section id="contacts">
+  <div class="container">
+    <div class="section-eyebrow reveal">Contacts</div>
+    <h2 class="section-title reveal reveal-delay-1">Get in <em>touch</em></h2>
+    <div class="contacts-grid">
+      <div class="reveal reveal-delay-1">
+        <div class="contact-group">
+          <div class="contact-label">Email</div>
+          <a href="mailto:info@draman.space" class="contact-value">info@draman.space</a>
+        </div>
+        <div class="contact-group">
+          <div class="contact-label">Phone</div>
+          <a href="tel:+380731106807" class="contact-value">+38 073 110 68 07</a>
+        </div>
+        <div class="contact-group">
+          <div class="contact-label">Location</div>
+          <span class="contact-value" style="cursor:default;">Kyiv, Ukraine</span>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="contact-label" style="margin-bottom:20px;">Social Media</div>
+        <div class="social-links">
+          <a href="https://instagram.com/draman_tt" target="_blank" rel="noopener" class="social-link">Instagram — @draman_tt</a>
+          <a href="https://facebook.com/draman_tt" target="_blank" rel="noopener" class="social-link">Facebook — draman_tt</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2022–2026 DRAMAN® Foundation · Kyiv, Ukraine · DRAMAN® is a registered trademark</div>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+</footer>
+
+<script>
+  // Menu
+  function openMenu() {
+    document.getElementById('menuOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    document.getElementById('menuOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Close menu on escape
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+</script>
+</body>
+</html>
