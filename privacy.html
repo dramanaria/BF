@@ -7,156 +7,164 @@
 <meta name="description" content="Privacy Policy of DRAMAN® Foundation, Kyiv, Ukraine.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f5f5f7;
-    --bg2: #ffffff;
-    --text: #1d1d1f;
-    --text-dim: rgba(29,29,31,0.6);
-    --text-muted: rgba(29,29,31,0.35);
-    --blue: #0066cc;
-    --mid: #6e6e73;
-    --border: rgba(29,29,31,0.1);
+    --navy: #0a0a4a;
+    --gold: #c5a35a;
+    --white: #ffffff;
+    --off-white: #f9f8f6;
+    --mid-gray: #e8e6e1;
+    --text: #1a1a2e;
+    --text-light: #5a5a6e;
+    --text-muted: #9a9aaa;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
     color: var(--text);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 400;
-    line-height: 1.7;
+    background: var(--white);
   }
 
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    height: 52px;
+    padding: 0 48px;
+    height: 72px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2.5rem;
-    background: rgba(245,245,247,0.85);
-    backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--mid-gray);
   }
 
   .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.05em;
     text-decoration: none;
   }
 
-  .nav-logo img { height: 22px; filter: brightness(0.15); opacity: 0.95; }
-  .nav-logo-text { font-size: 0.8rem; font-weight: 500; color: var(--text); letter-spacing: -0.01em; }
-
-  .main {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 8rem 2.5rem 6rem;
+  .nav-logo sup {
+    font-size: 0.5em;
+    vertical-align: super;
   }
 
-  .page-label {
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: var(--blue);
-    letter-spacing: 0.06em;
+  .main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 120px 48px 80px;
+  }
+
+  .page-eyebrow {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    margin-bottom: 0.8rem;
+    color: var(--gold);
+    margin-bottom: 24px;
   }
 
   h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 400;
-    line-height: 1.2;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.01em;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--navy);
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
   }
 
   .updated {
-    font-size: 0.78rem;
-    color: var(--mid);
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--mid-gray);
   }
 
   h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
     font-weight: 500;
-    color: var(--text);
-    margin-top: 2.5rem;
-    margin-bottom: 0.8rem;
-    letter-spacing: -0.01em;
+    color: var(--navy);
+    margin-top: 40px;
+    margin-bottom: 16px;
   }
 
   p {
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    line-height: 1.9;
-    margin-bottom: 1rem;
+    font-size: 16px;
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: 16px;
   }
 
-  a { color: var(--blue); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+  a { color: var(--navy); text-decoration: underline; text-decoration-color: var(--gold); }
+  a:hover { color: var(--gold); }
 
   .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.8rem;
-    color: var(--blue);
+    display: inline-block;
+    margin-top: 48px;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
     text-decoration: none;
-    margin-bottom: 3rem;
-    margin-top: 3rem;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
   }
 
-  .back-link:hover { text-decoration: underline; }
+  .back-link:hover { opacity: 0.7; }
 
   footer {
-    background: #1d1d1f;
-    padding: 2rem 2.5rem;
+    background: var(--navy);
+    padding: 40px 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 16px;
   }
 
-  .footer-copy { font-size: 0.68rem; color: rgba(255,255,255,0.4); }
-  .footer-reg { font-size: 0.64rem; color: rgba(255,255,255,0.25); }
+  .footer-copy {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .footer-reg {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+  }
 
   @media (max-width: 768px) {
-    nav { padding: 0 1.5rem; }
-    .main { padding: 6rem 1.5rem 4rem; }
-    footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+    nav { padding: 0 24px; }
+    .main { padding: 100px 24px 60px; }
+    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">
-    <img src="https://draman.space/images/DRAMANlogo.png" alt="DRAMAN">
-    <span class="nav-logo-text">DRAMAN® Foundation</span>
-  </a>
+  <a href="index.html" class="nav-logo">DRAMAN<sup>®</sup> Foundation</a>
 </nav>
 
 <div class="main">
-  <div class="page-label">Legal</div>
+  <div class="page-eyebrow">Legal</div>
   <h1>Privacy Policy</h1>
   <p class="updated">Last updated: May 2026</p>
 
   <h2>Who We Are</h2>
-  <p>DRAMAN® Foundation ("we", "us", "our") is a charitable organisation registered in Kyiv, Ukraine. We operate the website draman.space and related subdomains. If you have any questions about this policy, contact us at <a href="mailto:info@draman.space">info@draman.space</a>.</p>
+  <p>DRAMAN® Foundation is a charitable organisation registered in Kyiv, Ukraine. We operate the website draman.space and related subdomains. If you have any questions about this policy, contact us at <a href="mailto:info@draman.space">info@draman.space</a>.</p>
 
   <h2>Information We Collect</h2>
   <p>We may collect personally identifiable information — such as your name, email address, and phone number — when you contact us directly, register for our programmes, or subscribe to DRAMAN Art Club.</p>
@@ -184,14 +192,16 @@
   <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated date. We encourage you to review this page periodically.</p>
 
   <h2>Contact</h2>
-  <p>DRAMAN® Foundation<br>Kyiv, Ukraine<br><a href="mailto:info@draman.space">info@draman.space</a><br><a href="https://draman.space">draman.space</a></p>
+  <p>DRAMAN® Foundation<br>Kyiv, Ukraine<br>
+  <a href="mailto:info@draman.space">info@draman.space</a><br>
+  <a href="https://draman.space">draman.space</a></p>
 
-  <a href="/" class="back-link">← Back to main site</a>
+  <a href="index.html" class="back-link">← Back to main site</a>
 </div>
 
 <footer>
-  <div class="footer-copy">© 2022–2026 DRAMAN® Foundation · Kyiv, Ukraine</div>
-  <div class="footer-reg">DRAMAN® — registered trademark</div>
+  <div class="footer-copy">© 2022–2026 DRAMAN® Foundation · Kyiv, Ukraine · DRAMAN® is a registered trademark</div>
+  <div class="footer-reg">draman.space</div>
 </footer>
 
 </body>
